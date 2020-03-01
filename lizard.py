@@ -23,12 +23,12 @@ if __name__ == '__main__':
       reward[5][8] = 10.0
       reward[7][8] = 10.0
 
-      reward[3][4] = -10
-      reward[1][4] = -10
-      reward[5][4] = -10
-      reward[7][4] = -10
-      reward[3][0] = 5
-      reward[1][0] = 5
+      reward[3][4] = -10.0
+      reward[1][4] = -10.0
+      reward[5][4] = -10.0
+      reward[7][4] = -10.0
+      reward[3][0] = 5.0
+      reward[1][0] = 5.0
       
       Q = np.zeros(shape=[SIZE,SIZE], dtype=np.float32)
       source = 6
@@ -38,6 +38,6 @@ if __name__ == '__main__':
       times = 1000
       train(feasibility, reward, Q, gamma, lrn_rate, goal, SIZE, times)
 
-      print("------------Q--------------------")
+      print("------------------------------------Q----------------------------------")
       m_print(Q)
       path(source, goal, Q)

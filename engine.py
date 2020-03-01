@@ -46,11 +46,14 @@ def best(source, feasibility, number_of_states, Q):
       Computes Q matrix
 """
 def train(feasibility, reward, Q, discount_factor, lrn_rate, goal, number_of_states, times):
+      counts = []
       for time in range(times):
             # Select a random source
             current_state = np.random.randint(0, number_of_states)
             # Updates Q-values while destination is not reached
+            counter = 0
             while current_state != goal:
+                  counter += 1
                   # Select a random next state
                   next = next_feasible(current_state, feasibility, number_of_states)
                   # Compute reward
@@ -59,6 +62,8 @@ def train(feasibility, reward, Q, discount_factor, lrn_rate, goal, number_of_sta
                   Q[current_state][next] = ((1-lrn_rate) * Q[current_state][next] + (lrn_rate * (reward[current_state][next] + (discount_factor * best_choice))))
                   # Moving towards next
                   current_state = next
+            counts.append(counter)
+      return counts
 
 """
       Prints path from source to goal
